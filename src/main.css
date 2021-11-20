@@ -146,3 +146,12 @@ button.edit{
 button.delete{
     color:#DB524E;
 }
+
+.opacity-50{
+    opacity:0.5;
+}
+
+a{
+    text-decoration:none;
+    color:#2F80ED;
+}

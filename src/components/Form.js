@@ -11,17 +11,16 @@ function Form(props) {
     } = props;
 
     const inputTextHandler = (e) => {
-       if(e.target.value.length > 0) {
+      
             setInputText(e.target.value)
-       }
-     
+            
     }
     const inputDateHandler = (e) => {
         setInputDate(e.target.value)
     }
     const handleFormSubmit = (e) => {
         e.preventDefault();
-        setTodos([...todos, {id:Math.ceil(Math.random() * 1000), text: inputText.length > 0 ? inputText : null, date:inputDate,completed:false}])
+        setTodos([...todos, {id:Math.ceil(Math.random() * 1000), text: inputText, date:inputDate,completed:false}])
         setInputText('');
         setInputDate('');
     }
@@ -31,7 +30,7 @@ function Form(props) {
            <form>
                <input placeholder='Type here' value={inputText} onChange={inputTextHandler} type='text' />
                <input value={inputDate} onChange={inputDateHandler} type='date' />
-                <button className='add-todo' onClick={handleFormSubmit}>Add</button>
+                <button className={`add-todo ${inputText.length < 1 || inputDate.length < 1 ? 'opacity-50' : ''}`} disabled={inputText.length < 1 || inputDate.length < 1} onClick={handleFormSubmit}>Add</button>
            </form>
            
        </div>

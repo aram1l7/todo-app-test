@@ -1,17 +1,21 @@
 import React from 'react'
 import Todo from './Todo'
 
-
-function TodoList({todos,setTodos,setInputText}) {
-    console.log(todos);
-
-
+function TodoList(props) {
+    const {todos,setTodos} = props;
+    
+    const unique = todos.filter((value, index, self) => {
+        return self.findIndex(v => v.date === value.date) === index;
+      })
+    console.log(unique);
+    
     return (
         <div className='todo-wrapper'>
             <ul className='todo-list'>
-                {todos.map(todo=> (
-                    <Todo todos={todos} setInputText={setInputText} setTodos={setTodos} todo={todo} id={todo.id} completed={todo.completed} key={todo.id} date={todo.date} text={todo.text} />
-                ))}
+                {unique.map(todo=> (
+                   <Todo todos={todos} setTodos={setTodos} id={todo.id} key={todo.id} date={todo.date}/>
+                ))
+                }
             </ul>  
         </div>
     )
